@@ -1,6 +1,6 @@
 {
-  "name": "deployment-status",
-  "version": "0.1.0",
+  "name": "github-deploy-status",
+  "version": "1.0.0",
   "private": true,
   "description": "GitHub action to update deployment status",
   "main": "lib/main.js",
@@ -15,31 +15,34 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/javascript-template.git"
+    "url": "git+https://github.com/bloodf/github-deploy-status.git"
   },
   "keywords": [
-    "actions",
-    "node",
-    "setup"
+    "github",
+    "deploy"
   ],
-  "author": "Chris Norman",
+  "author": {
+    "name": "Heitor Ramon Ribeiro",
+    "email": "heitor.ramon@gmail.com",
+    "url": "https://heitor.co"
+  },
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.8.2",
+    "@actions/core": "^1.9.0",
     "@actions/github": "^5.0.3"
   },
   "devDependencies": {
-    "@types/jest": "^27.5.1",
-    "@types/node": "^12.0.4",
-    "@typescript-eslint/parser": "^5.25.0",
-    "@vercel/ncc": "^0.33.4",
-    "eslint": "^8.16.0",
-    "eslint-plugin-github": "^4.3.6",
-    "eslint-plugin-jest": "^26.2.2",
-    "jest": "^28.1.0",
-    "jest-circus": "^28.1.0",
-    "prettier": "^2.6.2",
-    "ts-jest": "^28.0.2",
-    "typescript": "^4.6.4"
+    "@types/jest": "^28.1.6",
+    "@types/node": "^18.6.3",
+    "@typescript-eslint/parser": "^5.32.0",
+    "@vercel/ncc": "^0.34.0",
+    "eslint": "^8.21.0",
+    "eslint-plugin-github": "^4.3.7",
+    "eslint-plugin-jest": "^26.7.0",
+    "jest": "^28.1.3",
+    "jest-circus": "^28.1.3",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.7",
+    "typescript": "^4.7.4"
   }
 }

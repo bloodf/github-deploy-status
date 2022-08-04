@@ -1,8 +1,8 @@
-# deployment-status
+# github-deploy-status
 
 A GitHub action to update the status of [Deployments](https://developer.github.com/v3/repos/deployments/) as part of your GitHub CI workflows.
 
-Works great with my other action to create Deployments, [chrnorm/deployment-action](https://github.com/chrnorm/deployment-action).
+Works great with my other action to create Deployments, [bloodf/github-deploy-action](https://github.com/bloodf/github-deploy-action).
 
 ## Action inputs
 
@@ -11,7 +11,7 @@ Works great with my other action to create Deployments, [chrnorm/deployment-acti
 | `repo`            | (Optional) A custom repository to create the deployment for. Defaults to the repo the action is running in.                           |
 | `owner`           | A custom owner to create the deployment for. Defaults to the repo owner the action is running in.                                     |
 | `state`           | The state to set the deployment to. Must be one of the below: "error" "failure" "inactive" "in_progress" "queued" "pending" "success" |
-| `token`           | GitHub token                                                                                                                          |
+| `token`           | (Optional - default from GitHub action) GitHub token                                                                                                                          |
 | `log-url`         | (Optional) Sets the URL for deployment output                                                                                         |
 | `environment-url` | (Optional) Sets the URL for accessing your environment                                                                                |
 | `environment`     | (Optional) Name for the target deployment environment, which can be changed when setting a deploy status.                             |
@@ -21,7 +21,7 @@ Works great with my other action to create Deployments, [chrnorm/deployment-acti
 
 ## Usage example
 
-The below example includes `chrnorm/deployment-action` and `chrnorm/deployment-status` to create and update a deployment within a workflow.
+The below example includes `bloodf/github-deploy-action` and `bloodf/github-deploy-status` to create and update a deployment within a workflow.
 
 ```yaml
 name: Deploy
@@ -39,15 +39,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
-      - uses: chrnorm/deployment-action@v2
+      - uses: bloodf/github-deploy-action@v1
         name: Create GitHub deployment
         id: deployment
         with:
           token: '${{ github.token }}'
           environment-url: http://my-app-url.com
-          environment: production
+          environment: production # or ${{env.ENVIRONMENT}}
 
       - name: Deploy my app
         run: |
@@ -55,18 +55,16 @@ jobs:
 
       - name: Update deployment status (success)
         if: success()
-        uses: chrnorm/deployment-status@v2
+        uses: bloodf/github-deploy-status@v1
         with:
-          token: '${{ github.token }}'
           environment-url: http://my-app-url.com
           state: 'success'
           deployment-id: ${{ steps.deployment.outputs.deployment_id }}
 
       - name: Update deployment status (failure)
         if: failure()
-        uses: chrnorm/deployment-status@v2
+        uses: bloodf/github-deploy-status@v1
         with:
-          token: '${{ github.token }}'
           environment-url: http://my-app-url.com
           state: 'failure'
           deployment-id: ${{ steps.deployment.outputs.deployment_id }}

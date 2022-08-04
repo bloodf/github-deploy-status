@@ -1,4 +1,4 @@
-name: 'Deployment Status'
+name: 'GitHub Deploy Status'
 description: 'Creates a GitHub Deployment status update'
 author: 'chrnorm'
 branding:
@@ -16,7 +16,8 @@ inputs:
     required: true
   token:
     description: 'Github repository token'
-    required: true
+    default: ${{ github.token }}
+    required: false
   log-url:
     description: 'Sets the URL for deployment output'
     required: false

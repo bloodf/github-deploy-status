@@ -1,6 +1,6 @@
 name: 'GitHub Deploy Status'
 description: 'Creates a GitHub Deployment status update'
-author: 'chrnorm'
+author: 'bloodf'
 branding:
   icon: arrow-up
   color: gray-dark
